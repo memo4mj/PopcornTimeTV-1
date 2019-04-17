@@ -1781,7 +1781,7 @@
 			attributes = {
 				CLASSPREFIX = PCT;
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = PopcornTime;
 				TargetAttributes = {
 					287B85331C9873A200EEF5C8 = {
@@ -1862,10 +1862,9 @@
 			};
 			buildConfigurationList = 287B852F1C9873A200EEF5C8 /* Build configuration list for PBXProject "PopcornTime" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				Base,
 				en,
 				es,
@@ -3212,7 +3211,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 57D1F839B5C2601A10C6E528 /* Pods-PopcornTimeiOS.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -3251,7 +3249,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7BC03BFF33C6A45D899B6238 /* Pods-PopcornTimeiOS.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
