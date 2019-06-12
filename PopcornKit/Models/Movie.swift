@@ -42,7 +42,8 @@ public struct Movie: Media, Equatable {
     
     /// The youtube code (part of the url after `?v=`) of the trailer. Will be `nil` if trailer url is `nil`.
     public var trailerCode: String? {
-        return trailer?.slice(from: "?v=", to: "")
+        if let trailer = trailer { return trailer.slice(from: "?v=", to: "") }
+        return nil
     }
     
     /// The certification type according to the Motion picture rating system.
@@ -133,13 +134,12 @@ public struct Movie: Media, Equatable {
             self.year = try map.value("year")
             self.rating = try map.value("rating.percentage")
             self.summary = ((try? map.value("synopsis")) ?? "No summary available.".localized).removingHtmlEncoding
-            self.largeCoverImage = try? map.value("images.poster"); largeCoverImage = largeCoverImage?.replacingOccurrences(of: "w500", with: "w780").replacingOccurrences(of: "SX300", with: "SX1000")
-            self.largeBackgroundImage = try? map.value("images.fanart"); largeBackgroundImage = largeBackgroundImage?.replacingOccurrences(of: "w500", with: "original").replacingOccurrences(of: "SX300", with: "SX1920")
+            self.largeCoverImage = try? map.value("images.poster"); self.largeCoverImage = self.largeCoverImage?.replacingOccurrences(of: "w500", with: "w780").replacingOccurrences(of: "SX300", with: "SX1000")
+            self.largeBackgroundImage = try? map.value("images.fanart"); self.largeBackgroundImage = self.largeBackgroundImage?.replacingOccurrences(of: "w500", with: "original").replacingOccurrences(of: "SX300", with: "SX1920")
             self.runtime = try map.value("runtime", using: IntTransform())
 
         }
-        var title: String? = try map.value("title")
-        title?.removeHtmlEncoding()
+        let title: String? = (try map.value("title") as String).removingHtmlEncoding
         self.title = title ?? ""
         self.tmdbId = try? map.value("ids.tmdb")
         self.slug = title?.slugged ?? ""
@@ -228,8 +228,8 @@ public struct Movie: Media, Equatable {
 // MARK: - Hashable
 
 extension Movie: Hashable {
-    public var hashValue: Int {
-        return id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id.hashValue)
     }
 }
 
